@@ -6,8 +6,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Editor extends FreditorUI {
-    public Editor() {
+    public static final String directory = System.getProperty("user.home") + "/clopad";
+    public static final String filenamePrefix = directory + "/clopad";
+    public static final String filenameSuffix = ".clj";
+    public static final String defaultFilename = filenamePrefix + filenameSuffix;
+
+    private final String filename;
+
+    public Editor(String filename) {
         super(Flexer.instance, ClojureIndenter.instance, 80, 25);
+        this.filename = filename;
         try {
             loadFromFile(filename);
         } catch (IOException ex) {
@@ -19,11 +27,6 @@ public class Editor extends FreditorUI {
                     + "(->> (range 1 11)\n  (map square )\n  (string/join \", \" ))\n");
         }
     }
-
-    public static final String directory = System.getProperty("user.home") + "/clopad";
-    public static final String filenamePrefix = directory + "/clopad";
-    public static final String filenameSuffix = ".txt";
-    public static final String filename = filenamePrefix + filenameSuffix;
 
     public void tryToSaveCode() {
         createDirectory();

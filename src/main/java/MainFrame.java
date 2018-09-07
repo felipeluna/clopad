@@ -25,10 +25,10 @@ public class MainFrame extends JFrame {
 
     private Console console;
 
-    public MainFrame() {
-        super(Editor.filename);
+    public MainFrame(String filename) {
+        super(filename);
 
-        input = new Editor();
+        input = new Editor(filename);
         output = new FreditorUI(OutputFlexer.instance, ClojureIndenter.instance, 80, 10);
         helps = new HashMap<>();
 
@@ -135,7 +135,7 @@ public class MainFrame extends JFrame {
         filter.getDocument().addDocumentListener(new DocumentAdapter(event -> filterSymbols()));
     }
 
-    private static final Pattern sourceLocation = Pattern.compile("clopad.txt:(\\d+)");
+    private static final Pattern sourceLocation = Pattern.compile(".*\\.clj:(\\d+)");
 
     private void setCursorToSourceLocation(String lexeme) {
         Matcher matcher = sourceLocation.matcher(lexeme);
@@ -219,7 +219,7 @@ public class MainFrame extends JFrame {
                 input.requestFocusInWindow();
                 String text = input.getText();
                 Reader reader = new StringReader(text);
-                Object result = Compiler.load(reader, Editor.directory, "clopad.txt");
+                Object result = Compiler.load(reader, Editor.directory, getTitle());
                 console.print(result);
                 updateNamespaces();
             } catch (Compiler.CompilerException ex) {
