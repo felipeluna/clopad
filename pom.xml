@@ -13,6 +13,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>clojars.org</id>
+            <url>https://repo.clojars.org</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -31,6 +38,36 @@
             <groupId>org.clojure</groupId>
             <artifactId>clojure</artifactId>
             <version>1.8.0</version>
+        </dependency>
+
+        <!-- additional dependencies for smooth demo purposes -->
+
+        <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>data.json</artifactId>
+            <version>0.2.6</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>compojure</groupId>
+            <artifactId>compojure</artifactId>
+            <version>1.5.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ring</groupId>
+            <artifactId>ring-defaults</artifactId>
+            <version>0.2.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>hiccup</groupId>
+            <artifactId>hiccup</artifactId>
+            <version>1.0.5</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
