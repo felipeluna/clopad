@@ -161,6 +161,30 @@ public class MainFrame extends JFrame {
                     case KeyEvent.VK_F12:
                         evaluateFormAtCursor(isolateSelectedForm(), selectPrintFormToWriter(event));
                         break;
+
+                    case KeyEvent.VK_F:
+			if (Editor.isControlCommandDown(event)) {
+			    printHelpInCurrentNamespace(input.symbolNearCursor(Flexer.SYMBOL_TAIL));
+			}
+                        break;
+
+                    case KeyEvent.VK_E:
+			if (Editor.isControlCommandDown(event)) {
+			    evaluateWholeProgram(selectPrintFormToWriter(event));
+			}
+                        break;
+
+                    case KeyEvent.VK_X:
+			if (Editor.isControlCommandDown(event)) {
+			    macroexpandFormAtCursor(isolateSelectedForm(), selectMacroexpand(event), selectPrintFormToWriter(event));
+			}
+                        break;
+
+                    case KeyEvent.VK_SPACE:
+			if (Editor.isControlCommandDown(event)) {
+			    evaluateFormAtCursor(isolateSelectedForm(), selectPrintFormToWriter(event));
+			}
+                        break;
                 }
             }
 
